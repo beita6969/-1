@@ -1,0 +1,19 @@
+server:
+  port: 8201
+
+spring:
+  application:
+    name: nacos-provider
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        username: nacos
+        password: nacos
+        namespace: public
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

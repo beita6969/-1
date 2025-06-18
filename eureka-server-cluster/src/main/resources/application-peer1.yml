@@ -1,0 +1,20 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: eureka-server-cluster
+  profiles: peer1
+
+eureka:
+  instance:
+    hostname: peer1
+    instance-id: ${spring.application.name}:${server.port}
+  client:
+    serviceUrl:
+      defaultZone: http://peer2:8762/eureka/,http://peer3:8763/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  server:
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 5000
