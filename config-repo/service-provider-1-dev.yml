@@ -1,0 +1,22 @@
+# service-provider-1 开发环境配置
+
+# 开发环境特定配置
+environment: development
+
+# 开发环境数据源
+datasource:
+  url: jdbc:mysql://localhost:3306/user_db_dev
+  username: dev_user
+  password: dev_password
+  
+# 开发环境日志级别更详细
+logging:
+  level:
+    com.experiment: DEBUG
+    org.springframework: DEBUG
+    
+# 开发环境特性开关
+features:
+  debug-mode: true
+  mock-data: true
+  performance-monitoring: false

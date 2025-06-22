@@ -1,0 +1,25 @@
+# bootstrap.yml - 优先于application.yml加载
+# 用于配置Config Server连接信息
+
+spring:
+  application:
+    name: service-provider-1  # 必须与配置文件名匹配
+  cloud:
+    config:
+      uri: http://localhost:8888  # Config Server地址
+      # 如果Config Server注册到Eureka，可以通过服务发现
+      # discovery:
+      #   enabled: true
+      #   service-id: config-server
+      profile: dev  # 激活的配置文件 (dev, prod, test等)
+      label: master  # Git分支名
+      fail-fast: true  # 启动时无法连接Config Server则失败
+      retry:
+        max-attempts: 6
+        initial-interval: 1000
+        max-interval: 2000
+        multiplier: 1.1
+        
+# 配置中心连接超时设置
+spring.cloud.config.request-read-timeout: 5000
+spring.cloud.config.request-connect-timeout: 5000

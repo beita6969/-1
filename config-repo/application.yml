@@ -1,0 +1,35 @@
+# 全局默认配置
+# 所有微服务共享的配置
+
+# 全局配置示例
+global:
+  author: Spring Cloud Experiment
+  version: 1.0
+  
+# Eureka 默认配置
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90
+
+# 通用日志配置
+logging:
+  level:
+    com.experiment: INFO
+    org.springframework.cloud: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    
+# 通用管理端点配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always

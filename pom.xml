@@ -18,16 +18,17 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <springdoc.version>2.8.3</springdoc.version>
     </properties>
 
     <modules>
         <module>eureka-server</module>
         <module>eureka-server-cluster</module>
+        <module>config-server</module>
         <module>service-provider-1</module>
         <module>service-provider-2</module>
         <module>service-consumer-1</module>
         <module>service-consumer-2</module>
-        <module>nacos-server</module>
         <module>nacos-provider</module>
         <module>nacos-consumer</module>
     </modules>
@@ -47,6 +48,11 @@
                 <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>${springdoc.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

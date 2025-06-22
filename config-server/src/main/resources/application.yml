@@ -1,0 +1,50 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          # 使用本地文件系统模拟Git仓库
+          uri: file:///${user.home}/Desktop/实验1/springcloud-experiment/config-repo
+          # 如果使用真实Git仓库，配置如下：
+          # uri: https://github.com/your-username/config-repo
+          # username: your-username
+          # password: your-password
+          search-paths: 
+            - '{application}'
+            - '{application}/{profile}'
+          default-label: master
+        # 使用本地文件系统
+        native:
+          search-locations: 
+            - file:///${user.home}/Desktop/实验1/springcloud-experiment/config-repo
+  profiles:
+    active: native
+
+# Eureka配置
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+
+# 暴露所有端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+# 日志配置
+logging:
+  level:
+    org.springframework.cloud.config: DEBUG

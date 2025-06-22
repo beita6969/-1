@@ -4,6 +4,11 @@ server:
 spring:
   application:
     name: nacos-consumer
+  config:
+    import:
+      - optional:nacos:nacos-consumer.yaml
+      - optional:nacos:application-common.yaml
+      - optional:nacos:service-config.json?group=DEFAULT_GROUP&refreshEnabled=true
   cloud:
     nacos:
       discovery:
@@ -11,6 +16,13 @@ spring:
         username: nacos
         password: nacos
         namespace: public
+      config:
+        server-addr: localhost:8848
+        username: nacos
+        password: nacos
+        file-extension: yaml
+        group: DEFAULT_GROUP
+        refresh-enabled: true
 
 feign:
   client:

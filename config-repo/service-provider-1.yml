@@ -1,0 +1,34 @@
+# service-provider-1 专属配置
+
+server:
+  port: 8081
+
+spring:
+  application:
+    name: service-provider-1
+
+# 业务配置
+business:
+  service:
+    name: 用户服务
+    description: 提供用户信息管理功能
+    version: v1.0
+    
+# 自定义配置
+user:
+  service:
+    default-page-size: 10
+    max-page-size: 100
+    cache-enabled: true
+    cache-ttl: 300  # 缓存过期时间（秒）
+    
+# 数据源配置（示例）
+datasource:
+  url: jdbc:mysql://localhost:3306/user_db
+  username: root
+  password: ENC(encrypted_password)  # 实际应用中应加密
+  
+# 日志级别
+logging:
+  level:
+    com.experiment.provider1: DEBUG

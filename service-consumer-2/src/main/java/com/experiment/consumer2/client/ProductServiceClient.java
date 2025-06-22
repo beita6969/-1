@@ -4,6 +4,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
 import java.util.Map;
 
 @FeignClient(name = "service-provider-2")
@@ -13,5 +14,5 @@ public interface ProductServiceClient {
     Map<String, Object> getProductById(@PathVariable("id") Long id);
     
     @GetMapping("/products")
-    Map<String, Object> getAllProducts();
+    List<Map<String, Object>> getAllProducts();
 }

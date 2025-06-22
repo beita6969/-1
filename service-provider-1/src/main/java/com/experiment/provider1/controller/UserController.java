@@ -1,10 +1,18 @@
 package com.experiment.provider1.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @RestController
 @RequestMapping("/users")
+@Tag(name = "用户管理", description = "用户管理相关的 API 接口")
 public class UserController {
     
     private final Map<Long, User> users = new HashMap<>();
@@ -17,12 +25,25 @@ public class UserController {
     }
     
     @GetMapping
+    @Operation(summary = "获取所有用户", description = "返回系统中所有用户的列表")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "成功获取用户列表",
+                content = @Content(schema = @Schema(implementation = User.class)))
+    })
     public List<User> getAllUsers() {
         return new ArrayList<>(users.values());
     }
     
     @GetMapping("/{id}")
-    public User getUserById(@PathVariable Long id) {
+    @Operation(summary = "根据ID获取用户", description = "根据用户ID获取用户详细信息")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "成功获取用户信息",
+                content = @Content(schema = @Schema(implementation = User.class))),
+        @ApiResponse(responseCode = "404", description = "用户不存在")
+    })
+    public User getUserById(
+            @Parameter(description = "用户ID", required = true)
+            @PathVariable Long id) {
         User user = users.get(id);
         if (user == null) {
             throw new UserNotFoundException("User not found with id: " + id);
@@ -31,9 +52,15 @@ public class UserController {
     }
     
     // Inner class for User model
+    @Schema(description = "用户实体")
     static class User {
+        @Schema(description = "用户ID", example = "1")
         private Long id;
+        
+        @Schema(description = "用户姓名", example = "张三")
         private String name;
+        
+        @Schema(description = "用户邮箱", example = "zhangsan@example.com")
         private String email;
         
         public User(Long id, String name, String email) {

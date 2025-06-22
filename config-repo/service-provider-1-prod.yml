@@ -1,0 +1,28 @@
+# service-provider-1 生产环境配置
+
+# 生产环境特定配置
+environment: production
+
+# 生产环境数据源
+datasource:
+  url: jdbc:mysql://prod-db-server:3306/user_db_prod
+  username: ${DB_USERNAME}  # 从环境变量读取
+  password: ${DB_PASSWORD}  # 从环境变量读取
+  connection-pool-size: 50
+  
+# 生产环境日志级别
+logging:
+  level:
+    com.experiment: WARN
+    org.springframework: WARN
+    
+# 生产环境特性开关
+features:
+  debug-mode: false
+  mock-data: false
+  performance-monitoring: true
+  
+# 性能优化配置
+performance:
+  cache-size: 1000
+  thread-pool-size: 20
