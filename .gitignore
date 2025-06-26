@@ -1,55 +1,61 @@
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# Package Files
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
 # Maven
 target/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/
 
-# IDE
+# IntelliJ IDEA
 .idea/
 *.iws
 *.iml
 *.ipr
+
+# Eclipse
 .classpath
+.factorypath
 .project
-.settings/
+.settings
+.springBeans
+.sts4-cache
+
+# VS Code
+.vscode/
 
 # macOS
 .DS_Store
 
-# Logs
-*.log
-logs/
-
-# Nacos binary files
+# Nacos
 nacos/
-nacos-server-*.tar.gz
-nacos-server-*.zip
 
-# Temporary files
-*.tmp
-*.temp
-nohup.out
+# Shell scripts (根据你的要求，不上传启动快捷文件)
+*.sh
 
-# Local configuration
-application-local.yml
-bootstrap-local.yml
-
-# Documentation and reports
+# Documentation (根据你的要求，不上传文档)
 *.md
+*.txt
 *.docx
-*test-guide.html
 
-# Screenshots
-screenshots/
-*.pic.jpg
-*.png
+# Test output
+test-output/
 
-# Scripts that might contain sensitive info
-configure-swagger.sh
-add-swagger-annotations.sh
-generate-documents.sh
-auto-*.sh
-
-# Clean script
-clean-for-git.sh
-EOF < /dev/null
+# Application logs
+logs/
